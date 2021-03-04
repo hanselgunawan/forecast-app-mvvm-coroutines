@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation.xml"
+    app:startDestination="@id/currentWeatherFragment2">
 
+    <fragment
+        android:id="@+id/currentWeatherFragment2"
+        android:name="com.hanseltritama.forecastappmvvm.ui.weather.current.CurrentWeatherFragment"
+        android:label="current_weather_fragment"
+        tools:layout="@layout/current_weather_fragment" />
+    <fragment
+        android:id="@+id/futureListWeatherFragment2"
+        android:name="com.hanseltritama.forecastappmvvm.ui.weather.future.list.FutureListWeatherFragment"
+        android:label="future_list_weather_fragment"
+        tools:layout="@layout/future_list_weather_fragment" />
+    <fragment
+        android:id="@+id/futureDetailsWeatherFragment"
+        android:name="com.hanseltritama.forecastappmvvm.ui.weather.future.details.FutureDetailsWeatherFragment"
+        android:label="future_details_weather_fragment"
+        tools:layout="@layout/future_details_weather_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hanseltritama.forecastappmvvm.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
