@@ -67,7 +67,10 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // Kodein
-    implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
+    implementation "org.kodein.di:kodein-di-framework-android-core:5.2.0"
+    implementation "org.kodein.di:kodein-di-framework-android-support:5.2.0"
+    implementation "org.kodein.di:kodein-di-framework-android-x:5.2.0"
+    implementation "org.kodein.di:kodein-di-generic-jvm:6.5.5"
     implementation "org.kodein.di:kodein-di-framework-android:$kodein_version"
 
     // DateTime support for older Android versions

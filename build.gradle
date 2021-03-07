@@ -3,7 +3,7 @@ buildscript {
     ext.kotlin_version = "1.4.21"
     ext.room_version = "2.2.6"
     ext.navigation_version = "2.3.3"
-    ext.kodein_version = "6.5.5"
+    ext.kodein_version = "5.1.1"
     ext.lifecycle_version = "2.3.0"
     ext.retrofit_version = "2.9.0"
     ext.groupie_version = "2.9.0"
@@ -25,6 +25,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/kodein-framework/Kodein-DI" }
     }
 }
 
