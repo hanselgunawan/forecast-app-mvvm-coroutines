@@ -7,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hanseltritama.forecastappmvvm.R
+import com.hanseltritama.forecastappmvvm.data.WeatherAPIService
+import kotlinx.android.synthetic.main.current_weather_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CurrentWeatherFragment : Fragment() {
 
@@ -26,7 +31,13 @@ class CurrentWeatherFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val apiService = WeatherAPIService()
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val currentWeatherResponse = apiService.getCurrentWeather("Los Angeles").await()
+            text_view_current_weather.text = currentWeatherResponse.current.toString()
+        }
     }
 
 }
