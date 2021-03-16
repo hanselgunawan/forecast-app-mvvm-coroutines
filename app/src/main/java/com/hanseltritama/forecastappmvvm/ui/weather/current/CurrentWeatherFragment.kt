@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.hanseltritama.forecastappmvvm.R
-import com.hanseltritama.forecastappmvvm.data.WeatherAPIService
+import com.hanseltritama.forecastappmvvm.data.network.ConnectivityInterceptorImpl
+import com.hanseltritama.forecastappmvvm.data.network.WeatherAPIService
+import com.hanseltritama.forecastappmvvm.data.network.WeatherNetworkDataSourceImpl
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -32,11 +35,15 @@ class CurrentWeatherFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
 
-        val apiService = WeatherAPIService()
+        val apiService = WeatherAPIService(ConnectivityInterceptorImpl(this.requireContext()))
+        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
+
+        weatherNetworkDataSource.downloadedCurrentWeather.observe(viewLifecycleOwner, Observer {
+            text_view_current_weather.text = it.toString()
+        })
 
         GlobalScope.launch(Dispatchers.Main) {
-            val currentWeatherResponse = apiService.getCurrentWeather("Los Angeles").await()
-            text_view_current_weather.text = currentWeatherResponse.current.toString()
+            weatherNetworkDataSource.fetchCurrentWeather("Los Angeles")
         }
     }
 

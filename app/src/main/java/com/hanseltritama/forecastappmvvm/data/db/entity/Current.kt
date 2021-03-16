@@ -3,7 +3,9 @@ package com.hanseltritama.forecastappmvvm.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import com.google.gson.annotations.SerializedName
+import com.hanseltritama.forecastappmvvm.data.db.MyTypeConverter
 
 const val CURRENT_WEATHER_ID = 0
 

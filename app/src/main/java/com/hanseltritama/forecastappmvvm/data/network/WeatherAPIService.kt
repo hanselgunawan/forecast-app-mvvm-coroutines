@@ -1,5 +1,6 @@
-package com.hanseltritama.forecastappmvvm.data
+package com.hanseltritama.forecastappmvvm.data.network
 
+import com.hanseltritama.forecastappmvvm.data.network.ConnectivityInterceptor
 import com.hanseltritama.forecastappmvvm.data.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -27,7 +28,9 @@ interface WeatherAPIService {
     // So the code will be executed after the specified wait time
 
     companion object {
-        operator fun invoke(): WeatherAPIService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): WeatherAPIService {
             val requestInterceptor = Interceptor { chain ->
                 // This is used to intercepting request
                 val url = chain.request()
@@ -43,6 +46,7 @@ interface WeatherAPIService {
             }
             val okHttpClient = OkHttpClient.Builder()
                     .addInterceptor(requestInterceptor)
+                    .addInterceptor(connectivityInterceptor)
                     .build()
 
             return Retrofit.Builder()
