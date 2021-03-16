@@ -1,4 +1,4 @@
-package com.hanseltritama.forecastappmvvm.data
+package com.hanseltritama.forecastappmvvm.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName

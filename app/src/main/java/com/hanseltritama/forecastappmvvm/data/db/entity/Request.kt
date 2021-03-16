@@ -1,7 +1,4 @@
-package com.hanseltritama.forecastappmvvm.data
-
-
-import com.google.gson.annotations.SerializedName
+package com.hanseltritama.forecastappmvvm.data.db.entity
 
 data class Request(
     val type: String,
